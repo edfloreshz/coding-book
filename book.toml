@@ -1,0 +1,6 @@
+[book]
+authors = ["Eduardo Flores"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Coding for beginners"

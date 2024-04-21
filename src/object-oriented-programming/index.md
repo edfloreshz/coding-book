@@ -1,0 +1,3 @@
+# Programación orientada a objetos
+
+La programación orientada a objetos (OOP) es un paradigma de programación que se basa en el concepto de "objetos", que pueden contener datos en forma de campos (también conocidos como atributos o propiedades) y código en forma de procedimientos (también conocidos como métodos). Los objetos interactúan entre sí a través de mensajes, lo que permite la creación de sistemas complejos y modulares.
