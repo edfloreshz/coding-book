@@ -2,153 +2,126 @@
 
 ![banner](https://images.unsplash.com/photo-1481349518771-20055b2a7b24?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=3600)
 
-El paradigma orientado a objetos es un estilo de programación que se basa en el concepto de "objetos", que pueden contener datos en forma de campos (también conocidos como atributos) y código en forma de procedimientos (también conocidos como métodos). En este paradigma, los objetos son instancias de clases, que definen la estructura y el comportamiento de los objetos.
+El paradigma orientado a objetos (POO) es un estilo de programación que organiza el código alrededor de "objetos" que combinan datos (atributos) y comportamiento (métodos) en una única unidad.
 
-## Clases y objetos
+## Concepto fundamental
 
-Una clase es una plantilla que define la estructura y el comportamiento de los objetos. Contiene campos para almacenar datos y métodos para realizar operaciones. Por otro lado, un objeto es una instancia de una clase, que contiene datos específicos y puede realizar operaciones definidas por la clase.
+La programación orientada a objetos modela conceptos del mundo real como objetos. Cada objeto tiene un estado (datos) y comportamiento (métodos) que operan sobre esos datos.
 
-```csharp
-class Persona
-{
-    // Campos
-    public string Nombre;
-    public int Edad;
+## Los cuatro pilares de la POO
 
-    // Métodos
-    public void Presentarse()
-    {
-        Console.WriteLine($"Hola, mi nombre es {Nombre} y tengo {Edad} años");
-    }
-}
+1. **Encapsulamiento**: Ocultar los detalles internos de un objeto
+2. **Abstracción**: Mostrar solo lo esencial, ocultar la complejidad
+3. **Herencia**: Crear nuevas clases basadas en clases existentes
+4. **Polimorfismo**: Objetos de diferentes tipos tratados de manera uniforme
 
-// Crear un objeto de la clase Persona
+## Ejemplo
 
-Persona persona = new Persona();
-persona.Nombre = "Juan";
-persona.Edad = 30;
-persona.Presentarse();
+```/dev/null/pseudocode.txt#L1-65
+// Clase base
+clase Empleado
+    privado nombre : Cadena
+    privado salario : Decimal
+
+    función constructor(nombre : Cadena, salario : Decimal)
+        este.nombre ← nombre
+        este.salario ← salario
+    fin función
+
+    función trabajar()
+        mostrar(nombre, " está trabajando")
+    fin función
+
+    función calcularSalario() -> Decimal
+        retornar salario
+    fin función
+
+    función obtenerNombre() -> Cadena
+        retornar nombre
+    fin función
+fin clase
+
+// Clase derivada (Herencia)
+clase Gerente hereda de Empleado
+    privado bonificación : Decimal
+
+    función constructor(nombre : Cadena, salario : Decimal, bono : Decimal)
+        super(nombre, salario)
+        este.bonificación ← bono
+    fin función
+
+    // Polimorfismo: sobreescribir método
+    función calcularSalario() -> Decimal
+        retornar super.calcularSalario() + bonificación
+    fin función
+
+    función dirigir()
+        mostrar(obtenerNombre(), " está dirigiendo el equipo")
+    fin función
+fin clase
+
+// Uso
+empleados : Lista<Empleado> ← nueva Lista<Empleado>()
+empleados.agregar(nuevo Empleado("Ana", 3000.0))
+empleados.agregar(nuevo Gerente("Carlos", 5000.0, 2000.0))
+empleados.agregar(nuevo Empleado("María", 3500.0))
+
+// Polimorfismo: procesar todos de forma uniforme
+totalNómina : Decimal ← 0.0
+para cada emp en empleados hacer
+    emp.trabajar()
+    salario : Decimal ← emp.calcularSalario()
+    mostrar("Salario: $", salario)
+    totalNómina ← totalNómina + salario
+    mostrar("---")
+fin para
+
+mostrar("Total nómina: $", totalNómina)
+
+// Salida:
+// Ana está trabajando
+// Salario: $3000.0
+// ---
+// Carlos está trabajando
+// Salario: $7000.0
+// ---
+// María está trabajando
+// Salario: $3500.0
+// ---
+// Total nómina: $13500.0
 ```
-
-En este ejemplo, se define una clase `Persona` con campos para el nombre y la edad, y un método `Presentarse` que imprime un mensaje con el nombre y la edad de la persona. Luego, se crea un objeto de la clase `Persona` llamado `persona` y se asignan valores a sus campos. Finalmente, se llama al método `Presentarse` para mostrar el mensaje.
-
-
-## Encapsulamiento
-
-El encapsulamiento es un principio de la programación orientada a objetos que consiste en ocultar los detalles de implementación de un objeto y exponer una interfaz pública para interactuar con él. Esto se logra definiendo campos como privados y proporcionando métodos públicos para acceder y modificar esos campos.
-
-```csharp
-class CuentaBancaria
-{
-    private double saldo;
-
-    public void Depositar(double monto)
-    {
-        saldo += monto;
-    }
-
-    public void Retirar(double monto)
-    {
-        saldo -= monto;
-    }
-
-    public double ObtenerSaldo()
-    {
-        return saldo;
-    }
-}
-
-CuentaBancaria cuenta = new CuentaBancaria();
-cuenta.Depositar(1000);
-cuenta.Retirar(500);
-Console.WriteLine($"Saldo actual: {cuenta.ObtenerSaldo()}");
-```
-
-En este ejemplo, se define una clase `CuentaBancaria` con un campo privado `saldo` y métodos públicos para depositar, retirar y obtener el saldo de la cuenta. El campo `saldo` se mantiene privado para ocultar su implementación interna, y los métodos públicos proporcionan una interfaz para interactuar con la cuenta.
-
-
-## Herencia
-
-La herencia es un mecanismo que permite que una clase herede campos y métodos de otra clase. La clase que hereda se conoce como "clase derivada" o "subclase", y la clase de la que hereda se conoce como "clase base" o "superclase". La herencia permite reutilizar código y definir relaciones entre clases.
-
-```csharp
-class Empleado
-{
-    public string Nombre;
-    public double Salario;
-
-    public void Trabajar()
-    {
-        Console.WriteLine($"{Nombre} está trabajando");
-    }
-}
-
-class Gerente : Empleado
-{
-    public void Gestionar()
-    {
-        Console.WriteLine($"{Nombre} está gestionando");
-    }
-}
-
-Gerente gerente = new Gerente();
-gerente.Nombre = "Ana";
-gerente.Salario = 50000;
-gerente.Trabajar();
-gerente.Gestionar();
-```
-
-En este ejemplo, se define una clase `Empleado` con campos para el nombre y el salario, y un método `Trabajar`. Luego, se define una clase `Gerente` que hereda de `Empleado` y agrega un método `Gestionar`. Se crea un objeto de la clase `Gerente` llamado `gerente` y se accede a los campos y métodos de la clase base.
-
-
-## Polimorfismo
-
-El polimorfismo es un concepto que permite que un objeto se comporte de diferentes maneras según el contexto en el que se utilice. En la programación orientada a objetos, el polimorfismo se puede lograr mediante la definición de métodos con el mismo nombre pero diferentes implementaciones en clases diferentes.
-
-```csharp
-class Figura
-{
-    public virtual void Dibujar()
-    {
-        Console.WriteLine("Dibujando figura");
-    }
-}
-
-class Circulo : Figura
-{
-    public override void Dibujar()
-    {
-        Console.WriteLine("Dibujando círculo");
-    }
-}
-
-class Cuadrado : Figura
-{
-    public override void Dibujar()
-    {
-        Console.WriteLine("Dibujando cuadrado");
-    }
-}
-
-Figura figura = new Circulo();
-figura.Dibujar();
-
-figura = new Cuadrado();
-figura.Dibujar();
-```
-
-En este ejemplo, se define una clase base `Figura` con un método `Dibujar` que se sobrescribe en las clases derivadas `Circulo` y `Cuadrado`. Se crea un objeto de tipo `Figura` que se asigna a instancias de `Circulo` y `Cuadrado`, y se llama al método `Dibujar` para cada objeto, lo que produce resultados diferentes según la implementación.
-
 
 ## Ventajas del paradigma orientado a objetos
 
-Algunas de las ventajas del paradigma orientado a objetos son:
+1. **Reutilización de código**: La herencia permite reutilizar código existente
+2. **Modularidad**: El código está organizado en unidades lógicas (clases)
+3. **Mantenibilidad**: Más fácil de modificar y extender
+4. **Modelado natural**: Los objetos representan conceptos del mundo real
+5. **Encapsulamiento**: Protege los datos de modificaciones incorrectas
+6. **Flexibilidad**: El polimorfismo permite código genérico y extensible
 
-- **Reutilización de código**: La herencia y el polimorfismo permiten reutilizar y extender el código de manera eficiente.
-- **Abstracción**: Las clases y objetos permiten modelar entidades del mundo real de manera más precisa y abstracta.
-- **Encapsulamiento**: El encapsulamiento ayuda a ocultar la implementación interna de un objeto y proteger sus datos.
-- **Mantenibilidad**: La estructura modular y jerárquica de las clases facilita la modificación y mantenimiento del código.
-- **Seguridad**: El encapsulamiento y la herencia controlada ayudan a garantizar la integridad y seguridad de los datos.
-- **Escalabilidad**: La estructura orientada a objetos facilita la escalabilidad y extensibilidad del código.
+## Principios de diseño
 
-El paradigma orientado a objetos es ampliamente utilizado en la programación moderna debido a sus ventajas en términos de reutilización, abstracción, encapsulamiento y mantenibilidad. Al comprender los conceptos fundamentales del paradigma orientado a objetos, puedes mejorar tu habilidad para diseñar y desarrollar programas eficientes y fáciles de mantener.
+**Principios SOLID:**
+- **S**ingle Responsibility: Una clase debe tener una sola responsabilidad
+- **O**pen/Closed: Abierto para extensión, cerrado para modificación
+- **L**iskov Substitution: Los objetos derivados deben poder reemplazar a los base
+- **I**nterface Segregation: Interfaces específicas mejor que generales
+- **D**ependency Inversion: Depender de abstracciones, no de implementaciones
+
+## Cuándo usar POO
+
+La POO es especialmente útil para:
+- Sistemas empresariales con entidades de negocio
+- Aplicaciones con interfaces gráficas
+- Videojuegos con personajes y objetos
+- Simulaciones del mundo real
+- Sistemas que requieren extensibilidad
+
+## Notas importantes
+
+- POO organiza el código en objetos con estado y comportamiento
+- Los cuatro pilares (encapsulamiento, abstracción, herencia, polimorfismo) trabajan juntos
+- No es la solución para todo; cada paradigma tiene sus casos de uso
+- Diseñar jerarquías de clases pensando en la extensibilidad
+- Preferir composición sobre herencia cuando sea apropiado

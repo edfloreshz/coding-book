@@ -1,75 +1,106 @@
 # Colas
 
-Las colas o `Queue`  son similares a cuando uno quiere ir a comer un sandwich a la cafetería y se pone en una fila. Esta estructura es una estructura FIFO (*first in, first out*), el primero en entrar es el primero en salir.
+Las colas (queues) son estructuras de datos que siguen el principio **FIFO** (First In, First Out - Primero en Entrar, Primero en Salir). Son como una fila de personas: el primero que llega es el primero en ser atendido.
 
-El nuevo elemento se inserta debajo del elemento existente, de modo que el elemento más antiguo puede estar en la parte superior y sacarse primero.
+## ¿Qué son las colas?
 
-| 0 |
-| --- |
-| 1 |
-| 2 |
-| 3 |
-| 4 |
-| 5 |
+Una cola es una colección donde:
+- Los elementos se agregan al final
+- Los elementos se sacan del frente
+- El primero en entrar es el primero en salir
 
-## Declaración
+## Visualización
 
-Para importar este tipo de dato, es necesario utilizar este namespace:
-
-```csharp
-using System.Collections.Generic;
+```
+    ┌──────┬─────────┬────────┐
+    │ Ana  │ Carlos  │ María  │
+    └──────┴─────────┴────────┘
+      ↑                    ↑
+    Frente              Final
+    (sale primero)   (entra último)
 ```
 
-Después, podemos crear una pila de la siguiente forma: 
+## Ejemplo
 
-```csharp
-Queue<string> queue = new();
+```pseudocode
+// Crear una cola vacía
+cola fila : texto
+
+// Agregar personas a la fila (encolar)
+fila.encolar("Ana")
+fila.encolar("Carlos")
+fila.encolar("María")
+
+// Ahora la fila es: Ana → Carlos → María
+
+// Ver quién está al frente (sin sacarlo)
+variable siguiente : texto ← fila.frente()
+mostrar(siguiente)  // "Ana"
+
+// Atender a la primera persona (desencolar)
+variable atendido : texto ← fila.desencolar()
+mostrar(atendido)  // "Ana"
+
+// Ahora la fila es: Carlos → María
+
+// Atender al siguiente
+atendido ← fila.desencolar()
+mostrar(atendido)  // "Carlos"
+
+// Ahora la fila es: María
+
+// Ver cuántas personas quedan
+variable cantidad : entero ← fila.tamaño()
+mostrar(cantidad)  // 1
+
+// Verificar si la cola está vacía
+variable vacia : booleano ← fila.estaVacia()
+mostrar(vacia)  // falso
 ```
 
-También se puede declarar utilizando `var`:
+## Operaciones principales
 
-```csharp
-var queue = new Queue<string>();
-```
+- **`encolar(elemento)`** - Agregar al final de la cola
+- **`desencolar()`** - Sacar y retornar el elemento del frente
+- **`frente()`** - Ver el elemento del frente sin sacarlo
+- **`tamaño()`** - Ver cuántos elementos hay
+- **`estaVacia()`** - Verificar si la cola está vacía
 
-También podemos declarar una lista con datos:
+## Usos comunes
 
-```csharp
-Queue<string> queue = new() { "Prueba" };
-```
+Las colas se usan para:
+- **Filas de espera** - Turnos en un banco, cafetería, etc.
+- **Impresión** - Cola de documentos para imprimir
+- **Procesamiento de tareas** - Procesar trabajos en orden
+- **Mensajes** - Enviar mensajes en el orden que llegan
 
-### Agregar datos
+## Diferencia con pilas
 
-Utilizando `Enqueue()` se agrega un objeto al final de la fila.
+| Característica | Cola (FIFO) | Pila (LIFO) |
+|----------------|-------------|-------------|
+| Orden | Primero en entrar, primero en salir | Último en entrar, primero en salir |
+| Analogía | Fila de personas | Pila de platos |
+| Agregar | Al final | Arriba |
+| Sacar | Del frente | De arriba |
 
-```csharp
-queue.Enqueue("Prueba");
-```
+## Buenas prácticas
 
-### Acceder a los datos
+1. **Verifica si está vacía antes de desencolar** - evita errores
+2. **Usa nombres descriptivos** - `colaTareas` en lugar de `q`
+3. **Respeta el orden FIFO** - no accedas a elementos del medio
+4. **Usa colas para procesamiento ordenado** - cuando el orden importa
 
-Utilizando `Peek()` se devuelve el objeto situado al principio de la pila sin eliminarlo.
+## Cuándo usar colas
 
-```csharp
-var elemento = queue.Peek();
-```
+**Usa colas cuando:**
+- Necesitas procesar elementos en orden de llegada
+- Implementas sistemas de turnos o espera
+- Gestionas tareas que deben ejecutarse en secuencia
+- El orden de procesamiento es importante
 
-### Eliminar datos
+**No uses colas cuando:**
+- Necesitas acceso aleatorio a elementos
+- El último elemento debe procesarse primero (usa pilas)
+- No importa el orden de procesamiento
 
-Utilizando `Dequeue()` se elimina y devuelve el objeto al comienzo de la fila.
-
-```csharp
-var elemento = queue.Dequeue();
-```
-
-### Revisar existencia de un elemento
-
-```csharp
-var pruebaExiste = list.Contains("Prueba");
-```
-
-### Eliminar todos los elementos
-
-```csharp
-queue.Clear();
-```
+Las colas son fundamentales en programación y se usan en muchos sistemas donde el orden de llegada debe respetarse.

@@ -1,22 +1,22 @@
 # Asignación
 
-La asignación es el proceso de almacenar un valor en una variable. En la mayoría de los lenguajes de programación, la asignación se realiza utilizando el operador de asignación `=`. El valor a la derecha del operador de asignación se almacena en la variable a la izquierda del operador de asignación.
+La asignación de valores a las variables es fundamental en la programación. Permite almacenar y modificar datos durante la ejecución del programa.
 
-Por ejemplo, en el siguiente código, se asigna el valor `10` a la variable `x`:
+## Asignación básica
 
-```csharp
-int x;
-x = 10;
-Console.WriteLine(x); // 10
+```pseudocode
+variable x : entero
+x ← 10
+mostrar(x)  // 10
 ```
 
-En este caso, el valor `10` se asigna a la variable `x`, y luego se imprime el valor de `x` en la consola.
+En este ejemplo, primero declaramos una variable `x` de tipo entero, luego le asignamos el valor `10` usando el operador de asignación `←`.
 
-La asignación también se puede realizar en una sola línea, como se muestra a continuación:
+## Declaración e inicialización
 
-```csharp
-int y = 20;
-Console.WriteLine(y); // 20
+```pseudocode
+variable y : entero ← 20
+mostrar(y)  // 20
 ```
 
 En este caso, se declara la variable `y` y se le asigna el valor `20` en la misma línea.
@@ -29,23 +29,44 @@ Además del operador de asignación básico `=`, la mayoría de los lenguajes de
 
 Por ejemplo, en lugar de escribir:
 
-```csharp
-x = x + 5;
+```pseudocode
+x ← x + 5
 ```
 
-Puedes abreviarlo usando el operador de asignación compuesto `+=`:
+Puedes usar la notación abreviada en algunos lenguajes:
 
-```csharp
-x += 5;
+```pseudocode
+// Forma larga
+x ← x + 5
+
+// Forma abreviada (en muchos lenguajes)
+x += 5
 ```
 
 Esto es equivalente a la expresión anterior y realiza la misma operación de suma y asignación.
 
-Aquí hay una lista de algunos operadores de asignación compuestos comunes:
-- `+=` (suma y asignación)
-- `-=` (resta y asignación)
-- `*=` (multiplicación y asignación)
-- `/=` (división y asignación)
-- `%=` (módulo y asignación)
+## Operadores compuestos comunes
+
+Aquí hay una lista de algunos operadores de asignación compuestos comunes disponibles en la mayoría de lenguajes:
+
+| Operador | Significado | Equivalente a |
+|----------|-------------|---------------|
+| `x += 5` | Suma y asignación | `x ← x + 5` |
+| `x -= 5` | Resta y asignación | `x ← x - 5` |
+| `x *= 5` | Multiplicación y asignación | `x ← x * 5` |
+| `x /= 5` | División y asignación | `x ← x / 5` |
+| `x %= 5` | Módulo y asignación | `x ← x % 5` |
+
+## Ejemplo
+
+```pseudocode
+variable contador : entero ← 0
+contador ← contador + 1  // contador ahora es 1
+contador += 1             // contador ahora es 2 (notación abreviada)
+
+variable total : decimal ← 100.0
+total ← total * 1.5      // total ahora es 150.0
+total *= 2               // total ahora es 300.0 (notación abreviada)
+```
 
 La asignación es un concepto fundamental en la programación que se utiliza para almacenar valores en variables. Los operadores de asignación compuestos son una forma conveniente de abreviar la escritura de expresiones comunes que involucran operaciones aritméticas y asignaciones.

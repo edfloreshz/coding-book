@@ -11,19 +11,33 @@ Un identificador es un nombre que se le asigna a una variable, constante, funci�
 
 ## Ejemplo
 
-```csharp
-int miVariable = 10;
-const int MI_CONSTANTE = 20;
+```pseudocode
+variable miVariable : entero ← 10
+constante MI_CONSTANTE : entero ← 20
 
-void miFuncion()
-{
-    Console.WriteLine(miVariable);
-}
+función miFuncion()
+    mostrar(miVariable)
+fin función
 
-class MiClase
-{
-    public int miAtributo;
-}
+clase MiClase
+    atributo miAtributo : entero
+fin clase
 ```
+
+En este ejemplo:
+- `miVariable` es un identificador para una variable
+- `MI_CONSTANTE` es un identificador para una constante (normalmente en mayúsculas)
+- `miFuncion` es un identificador para una función
+- `MiClase` es un identificador para una clase
+- `miAtributo` es un identificador para un atributo de clase
+
+## Convenciones comunes
+
+Aunque los lenguajes varían, estas convenciones son ampliamente aceptadas:
+
+- **Variables y funciones**: `camelCase` o `snake_case` (ejemplos: `miVariable`, `mi_variable`)
+- **Constantes**: `MAYÚSCULAS_CON_GUIONES` (ejemplo: `MI_CONSTANTE`)
+- **Clases**: `PascalCase` (ejemplo: `MiClase`)
+- **Descriptivos**: Usa nombres que describan el propósito (`edad` en lugar de `e`)
 
 Los identificadores son una parte fundamental de la programación y se utilizan para nombrar y referenciar elementos en un programa de computadora.

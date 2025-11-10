@@ -1,142 +1,186 @@
 # Clases
 
-Las clases son plantillas que definen la estructura de un objeto. En ellas se definen los atributos y métodos que tendrán los objetos que se creen a partir de ellas, comunmente se utilizan para modelar objetos reales en el código.
+Las clases son plantillas para crear objetos. Son como moldes que definen qué propiedades y acciones tendrán los objetos.
 
-## Definición
+## ¿Qué es una clase?
 
-Para definir una clase en C#, se utiliza la palabra clave `class`, seguida del nombre de la clase y el cuerpo de la clase entre llaves `{}`. Dentro del cuerpo de la clase, se pueden definir atributos y métodos que describen el comportamiento y las propiedades de los objetos de esa clase.
+Una clase tiene:
+- **Atributos** - Las características (como nombre, edad, color)
+- **Métodos** - Las acciones que puede hacer (como caminar, hablar)
+- **Constructor** - Cómo se crea el objeto
 
-Aquí hay un ejemplo de cómo se ve la definición de una clase `Car` en C#:
+## Estructura básica
 
-```csharp
-public class Product
-{
-    public string Name { get; set; }
-    public decimal Price { get; set; }
-}
+```pseudocode
+clase NombreClase
+    atributo propiedad : tipo
+    
+    constructor(parámetro : tipo)
+        este.propiedad ← parámetro
+    fin constructor
+    
+    método hacerAlgo() : tipo
+        // código
+    fin método
+fin clase
 ```
 
-## Instancias de clases
+## Ejemplo
 
-Una vez que se define una clase, se pueden crear objetos o "instancias" de ella. Cada instancia tendrá sus propios valores para los atributos y podrá ejecutar los métodos de la clase. Para crear una instancia de una clase en C#, se utiliza la palabra clave `new`, seguida del nombre de la clase y paréntesis `()`.
+```pseudocode
+// Definir la clase Perro
+clase Perro
+    // Atributos (características)
+    atributo nombre : texto
+    atributo edad : entero
+    atributo raza : texto
+    
+    // Constructor (cómo crear un perro)
+    constructor(nombre : texto, edad : entero, raza : texto)
+        este.nombre ← nombre
+        este.edad ← edad
+        este.raza ← raza
+    fin constructor
+    
+    // Métodos (acciones que puede hacer)
+    método ladrar() : nulo
+        mostrar(este.nombre + " dice: ¡Guau!")
+    fin método
+    
+    método cumplirAños() : nulo
+        este.edad ← este.edad + 1
+        mostrar(este.nombre + " ahora tiene " + convertirATexto(este.edad) + " años")
+    fin método
+    
+    método presentarse() : nulo
+        mostrar("Hola, soy " + este.nombre)
+        mostrar("Tengo " + convertirATexto(este.edad) + " años")
+        mostrar("Soy un " + este.raza)
+    fin método
+fin clase
 
+// Crear objetos (instancias) de la clase Perro
+variable miPerro : Perro ← nuevo Perro("Max", 3, "Labrador")
+variable otroPerro : Perro ← nuevo Perro("Luna", 5, "Beagle")
 
-```csharp
-Product apple = new Product();
-product1.Name = "Apple";
-product1.Price = 10.0;
+// Usar los métodos
+miPerro.presentarse()
+// Hola, soy Max
+// Tengo 3 años
+// Soy un Labrador
+
+miPerro.ladrar()  // Max dice: ¡Guau!
+
+otroPerro.ladrar()  // Luna dice: ¡Guau!
+
+// Acceder a atributos
+mostrar(miPerro.nombre)  // Max
+mostrar(otroPerro.edad)  // 5
+
+// Modificar atributos
+miPerro.cumplirAños()  // Max ahora tiene 4 años
+
+// Otro ejemplo: Clase Coche
+clase Coche
+    atributo marca : texto
+    atributo modelo : texto
+    atributo velocidad : entero
+    
+    constructor(marca : texto, modelo : texto)
+        este.marca ← marca
+        este.modelo ← modelo
+        este.velocidad ← 0
+    fin constructor
+    
+    método acelerar() : nulo
+        este.velocidad ← este.velocidad + 10
+        mostrar("Velocidad: " + convertirATexto(este.velocidad) + " km/h")
+    fin método
+    
+    método frenar() : nulo
+        este.velocidad ← 0
+        mostrar("El coche se ha detenido")
+    fin método
+    
+    método mostrarInfo() : nulo
+        mostrar(este.marca + " " + este.modelo)
+    fin método
+fin clase
+
+// Usar la clase Coche
+variable miCoche : Coche ← nuevo Coche("Toyota", "Corolla")
+
+miCoche.mostrarInfo()  // Toyota Corolla
+miCoche.acelerar()     // Velocidad: 10 km/h
+miCoche.acelerar()     // Velocidad: 20 km/h
+miCoche.frenar()       // El coche se ha detenido
 ```
 
+## La palabra `este`
 
-## Propiedades
+`este` se refiere al objeto actual. Se usa para diferenciar entre:
+- Atributos de la clase: `este.nombre`
+- Parámetros del método: `nombre`
 
-Las propiedades en programación son una forma de acceder y modificar valores de una clase de manera controlada. Se comportan como atributos, pero proporcionan un mayor nivel de control y seguridad, ya que se pueden establecer reglas y validaciones para el acceso y la asignación de valores.
-
-El acceso a los valores de una propiedad se hace mediante la sintaxis de una variable, pero el código real detrás de una propiedad puede realizar cualquier tarea que se requiera, como validar un valor o calcular un valor basado en otras propiedades de la clase.
-
-Este es un ejemplo de código en C# para una clase con una propiedad llamada `Name`:
-
-```csharp
-class Product
-{
-    public decimal Price { get; set; }
-    private string name;
-
-    public string Name
-    {
-        get
-        {
-            return name;
-        }
-        set
-        {
-            if (!string.IsNullOrEmpty(value))
-            {
-                name = value;
-            }
-        }
-    }
-}
+```pseudocode
+clase Persona
+    atributo nombre : texto
+    
+    constructor(nombre : texto)
+        este.nombre ← nombre  // este.nombre es el atributo
+                              // nombre es el parámetro
+    fin constructor
+fin clase
 ```
 
-## Metodos
+## ¿Por qué usar clases?
 
-Los métodos en programación son bloques de código que realizan una tarea específica. En el contexto de las clases, los métodos son funciones que se definen dentro de una clase y pueden acceder a los atributos y propiedades de la clase.
+Las clases ayudan a:
+- **Organizar el código** - Agrupar datos relacionados
+- **Reutilizar código** - Crear muchos objetos del mismo tipo
+- **Modelar el mundo real** - Representar cosas como personas, coches, productos
+- **Mantener el código** - Cambios en un solo lugar
 
-Los métodos pueden tener parámetros de entrada y pueden devolver un valor como resultado de su ejecución. También pueden ser públicos o privados, lo que determina si pueden ser accedidos desde fuera de la clase.
+## Diferencia entre clase y objeto
 
-Este es un ejemplo de código en C# para una clase con un método llamado `PrintPrice`:
+| Clase | Objeto |
+|-------|--------|
+| La plantilla o molde | El resultado concreto |
+| Se define una vez | Se pueden crear muchos |
+| Como un plano de casa | Como una casa real |
 
-```csharp
-class Product
-{
-    public string Name { get; set; }
-    public decimal Price { get; set; }
+```pseudocode
+// La clase es la plantilla
+clase Estudiante
+    atributo nombre : texto
+    atributo nota : decimal
+fin clase
 
-    void PrintPrice()
-    {
-        Console.WriteLine("The price of " + Name + " is " + Price);
-    }
-}
+// Los objetos son instancias concretas
+variable estudiante1 : Estudiante ← nuevo Estudiante()
+variable estudiante2 : Estudiante ← nuevo Estudiante()
+variable estudiante3 : Estudiante ← nuevo Estudiante()
+// Cada uno es un estudiante diferente con sus propios datos
 ```
 
-## Constructores
+## Buenas prácticas
 
-Los constructores son métodos especiales que se utilizan para inicializar una nueva instancia de una clase. Al crear una instancia de una clase, se invoca automáticamente su constructor. Por ejemplo, podemos crear un constructor en la clase `Car` que asigne valores iniciales a los atributos cuando se crea una nueva instancia.
+1. **Nombres en singular** - `Perro`, no `Perros`
+2. **Nombres descriptivos** - `Coche` en lugar de `C`
+3. **Un propósito claro** - Cada clase representa una cosa
+4. **Atributos privados cuando sea posible** - Protege los datos
 
-```csharp
-class Product
-{
-    public string Name { get; set; }
-    public decimal Price { get; set; }
+## Cuándo usar clases
 
-    public Product(string name, decimal price)
-    {
-        Name = name;
-        Price = price;
-    }
-}
-```
+Usa clases cuando:
+- Necesitas representar entidades del mundo real (persona, coche, producto)
+- Tienes datos y comportamientos relacionados
+- Quieres crear múltiples objetos similares
+- Necesitas organizar código complejo
 
-## Destructores
+No necesitas clases para:
+- Scripts simples y pequeños
+- Operaciones matemáticas básicas
+- Código que se ejecuta una sola vez
 
-Los destructores son métodos especiales que se invocan automáticamente cuando un objeto se elimina. Los destructores se utilizan para liberar recursos asociados con un objeto antes de que se destruya.
-
-```csharp
-class Product
-{
-    public string Name { get; set; }
-    public decimal Price { get; set; }
-
-    ~Product()
-    {
-        // Código para liberar recursos aquí
-    }
-}
-```
-
-## Sobrecarga de constructores
-
-La sobrecarga de constructores es una técnica que permite tener varios constructores con diferentes argumentos en una misma clase. Esto se hace para que sea más fácil crear objetos con diferentes conjuntos de valores iniciales.
-
-```csharp
-class Product
-{
-    public string Name { get; set; }
-    public decimal Price { get; set; }
-
-    // Constructor sin argumentos
-    public Product()
-    {
-        Name = "Product";
-        Price = 0;
-    }
-
-    // Constructor con argumentos
-    public Product(string name, decimal price)
-    {
-        Name = name;
-        Price = price;
-    }
-}
-```
+Las clases son la base de la programación orientada a objetos y te permiten organizar tu código de manera clara y reutilizable.

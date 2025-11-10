@@ -1,55 +1,73 @@
 # Polimorfismo
 
-El polimorfismo se refiere a la capacidad de un objeto de comportarse de diferentes maneras en función del contexto en el que se encuentra. Esto permite que un objeto de una clase derivada se comporte como un objeto de la clase base, lo que facilita la creación de código genérico y flexible.
+El polimorfismo permite que objetos de diferentes clases sean tratados de manera uniforme a través de una interfaz común. La palabra "polimorfismo" significa "muchas formas".
 
-## Tipos de polimorfismo
+## Concepto
 
-En programación orientada a objetos, existen dos tipos principales de polimorfismo: polimorfismo de subtipos y polimorfismo paramétrico.
+El polimorfismo permite que diferentes objetos respondan de manera diferente al mismo mensaje o método, facilitando escribir código que funcione con diferentes tipos de objetos sin necesidad de conocer sus tipos específicos.
 
-### Polimorfismo de subtipos
+## Ejemplo
 
-El polimorfismo de subtipos se refiere a la capacidad de un objeto de una clase derivada de comportarse como un objeto de la clase base. Esto significa que un objeto de la clase derivada puede ser tratado como un objeto de la clase base en el código, lo que facilita la creación de código genérico y flexible.
+```/dev/null/pseudocode.txt#L1-45
+clase Animal
+    nombre : Cadena
+    
+    función constructor(nombre : Cadena)
+        este.nombre ← nombre
+    fin función
+    
+    función hacerSonido()
+        mostrar("El animal hace un sonido")
+    fin función
+fin clase
 
-Por ejemplo, considera las clases `Animal` y `Dog`:
+clase Perro hereda de Animal
+    función constructor(nombre : Cadena)
+        super(nombre)
+    fin función
+    
+    función hacerSonido()
+        mostrar(nombre, " dice: ¡Guau!")
+    fin función
+fin clase
 
-```csharp
-class Animal
-{
-    public virtual void Eat()
-    {
-        Console.WriteLine("The animal is eating");
-    }
-}
+clase Gato hereda de Animal
+    función constructor(nombre : Cadena)
+        super(nombre)
+    fin función
+    
+    función hacerSonido()
+        mostrar(nombre, " dice: ¡Miau!")
+    fin función
+fin clase
 
-class Dog : Animal
-{
-    public override void Eat()
-    {
-        Console.WriteLine("The dog is eating");
-    }
-}
+// Polimorfismo: la misma variable puede contener diferentes tipos
+animales : Lista<Animal> ← nueva Lista<Animal>()
+animales.agregar(nuevo Perro("Rex"))
+animales.agregar(nuevo Gato("Misi"))
+animales.agregar(nuevo Perro("Max"))
+
+// El método correcto se llama según el tipo real del objeto
+para cada animal en animales hacer
+    animal.hacerSonido()
+fin para
+
+// Salida:
+// Rex dice: ¡Guau!
+// Misi dice: ¡Miau!
+// Max dice: ¡Guau!
 ```
 
-En este ejemplo, la clase `Dog` hereda de la clase `Animal` y sobrescribe el método `Eat`. Esto significa que un objeto de la clase `Dog` puede ser tratado como un objeto de la clase `Animal` en el código, lo que facilita la creación de código genérico y flexible.
+## Ventajas del polimorfismo
 
+1. **Código más flexible**: Funciona con diferentes tipos sin modificar el código
+2. **Extensibilidad**: Fácil agregar nuevos tipos sin cambiar código existente
+3. **Abstracción**: Trabajar con conceptos generales sin preocuparse por detalles
+4. **Reutilización**: El mismo código funciona con múltiples tipos
 
-### Polimorfismo paramétrico
+## Notas importantes
 
-El polimorfismo paramétrico se refiere a la capacidad de un objeto de comportarse de diferentes maneras en función de los parámetros de entrada que recibe. Esto permite que un método o función pueda aceptar diferentes tipos de datos como entrada y producir diferentes resultados en función de esos datos.
-
-Por ejemplo, considera una función `Add` que puede sumar dos números enteros o concatenar dos cadenas de texto:
-
-```csharp
-
-public int Add(int a, int b)
-{
-    return a + b;
-}
-
-public string Add(string a, string b)
-{
-    return a + b;
-}
-```
-
-En este ejemplo, la función `Add` puede aceptar diferentes tipos de datos como entrada y producir diferentes resultados en función de esos datos. Esto es un ejemplo de polimorfismo paramétrico, ya que el comportamiento de la función varía en función de los parámetros de entrada que recibe.
+- El polimorfismo permite tratar objetos de diferentes clases de forma uniforme
+- El tipo en tiempo de ejecución determina qué método se ejecuta
+- Facilita agregar nuevos tipos sin modificar código existente
+- Se basa en herencia o interfaces

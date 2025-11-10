@@ -1,32 +1,68 @@
-# Throw
+# Throw (Lanzar excepciones)
 
-La clausula `throw` se utiliza para lanzar una excepción en un programa. Una excepción es un objeto que representa un error o una condición inesperada que se produce durante la ejecución de un programa. Al lanzar una excepción, se interrumpe el flujo normal del programa y se transfiere el control a un bloque `catch` que maneja la excepción.
+La cláusula `lanzar` se utiliza para lanzar una excepción en un programa. Una excepción es un objeto que representa un error o una condición inesperada. Al lanzar una excepción, se interrumpe el flujo normal del programa y se transfiere el control a un bloque `capturar` que maneja la excepción.
 
-## Sintaxis
+## Sintaxis básica
 
-La sintaxis de la cláusula `throw` es la siguiente:
-
-```csharp
-throw new Exception("Mensaje de error");
+```/dev/null/pseudocode.txt#L1-3
+lanzar nuevo Error("Mensaje de error")
 ```
-
-En este ejemplo, se lanza una excepción de tipo `Exception` con un mensaje de error específico. El mensaje de error proporciona información adicional sobre la excepción que se ha producido y puede ser útil para identificar y depurar problemas en el programa.
 
 ## Ejemplo
 
-En el siguiente ejemplo, se lanza una excepción si se intenta dividir por cero:
+```/dev/null/pseudocode.txt#L1-25
+función dividir(a : Entero, b : Entero) -> Entero
+    si b = 0 entonces
+        lanzar nuevo Error("No se puede dividir por cero")
+    fin si
+    
+    retornar a / b
+fin función
 
-```csharp
-try 
-{
-    int result = 10 / 0;
-    Console.WriteLine($"El resultado de la división es: {result}");
-}
-catch (DivideByZeroException ex)
-{
-    Console.WriteLine("Error: No se puede dividir por cero");
-    throw ex;
-}
+función validarEdad(edad : Entero)
+    si edad < 0 entonces
+        lanzar nuevo Error("La edad no puede ser negativa")
+    fin si
+    
+    si edad > 150 entonces
+        lanzar nuevo Error("La edad no es válida")
+    fin si
+fin función
+
+// Uso
+intentar
+    resultado : Entero ← dividir(10, 0)
+    mostrar("Resultado: ", resultado)
+capturar error como excepción
+    mostrar("Error: ", excepción.mensaje)
+fin intentar
 ```
 
-En este ejemplo, se intenta dividir `10` por `0`, lo cual resulta en una excepción `DivideByZeroException`. En el bloque `catch`, se imprime un mensaje de error en la consola y se lanza la excepción nuevamente utilizando la cláusula `throw`. Esto permite que la excepción se propague a bloques `catch` superiores o al sistema de tiempo de ejecución para su manejo.
+## Relanzar excepciones
+
+A veces es necesario capturar una excepción, realizar alguna acción, y luego relanzarla:
+
+```/dev/null/pseudocode.txt#L1-14
+función procesarArchivo(nombreArchivo : Cadena)
+    intentar
+        archivo : Archivo ← abrirArchivo(nombreArchivo)
+        // Procesar archivo...
+    capturar error como excepción
+        registrarEnLog("Error al procesar: " + nombreArchivo)
+        lanzar excepción  // Relanzar la misma excepción
+    fin intentar
+fin función
+
+intentar
+    procesarArchivo("datos.txt")
+capturar error
+    mostrar("No se pudo procesar el archivo")
+fin intentar
+```
+
+## Notas importantes
+
+- Usar excepciones para condiciones **excepcionales**, no para flujo de control normal
+- Siempre proporcionar mensajes de error informativos
+- Las excepciones deben representar errores, no resultados normales
+- Lanzar excepciones tiene un costo de rendimiento, úselas apropiadamente

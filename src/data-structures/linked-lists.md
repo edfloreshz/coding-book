@@ -1,75 +1,131 @@
 # Listas enlazadas
 
-Las listas enlazadas o `LinkedList` son una estructura de datos que permite almacenar una secuencia de elementos, donde cada elemento contiene una referencia al siguiente elemento en la lista. Esto permite una mayor flexibilidad en la inserción y eliminación de elementos en comparación con las listas estáticas.
+Las listas enlazadas son una estructura de datos lineal en la que cada elemento (nodo) contiene un valor y una referencia (enlace) al siguiente elemento en la secuencia. A diferencia de los arreglos, los elementos no están almacenados en posiciones contiguas de memoria.
 
-## Declaración
+## Concepto
 
-Para importar este tipo de dato, es necesario utilizar este namespace:
+Una lista enlazada consiste en nodos conectados, donde cada nodo tiene:
+- **Dato**: El valor almacenado
+- **Siguiente**: Referencia al siguiente nodo
 
-```csharp
-using System.Collections.Generic;
+```/dev/null/pseudocode.txt#L1-7
+clase Nodo
+    dato : TipoDato
+    siguiente : Nodo
+    
+    función constructor(valor : TipoDato)
+        este.dato ← valor
+        este.siguiente ← nulo
+    fin función
+fin clase
 ```
 
-Después, podemos crear una lista enlazada de la siguiente forma:
+## Implementación básica
 
-```csharp
-LinkedList<string> listaEnlazada = new LinkedList<string>();
+```/dev/null/pseudocode.txt#L1-47
+clase ListaEnlazada
+    cabeza : Nodo
+    tamaño : Entero
+    
+    función constructor()
+        cabeza ← nulo
+        tamaño ← 0
+    fin función
+    
+    // Agregar al inicio
+    función agregarAlInicio(valor : TipoDato)
+        nuevoNodo : Nodo ← nuevo Nodo(valor)
+        nuevoNodo.siguiente ← cabeza
+        cabeza ← nuevoNodo
+        tamaño ← tamaño + 1
+    fin función
+    
+    // Agregar al final
+    función agregarAlFinal(valor : TipoDato)
+        nuevoNodo : Nodo ← nuevo Nodo(valor)
+        
+        si cabeza = nulo entonces
+            cabeza ← nuevoNodo
+        sino
+            actual : Nodo ← cabeza
+            mientras actual.siguiente ≠ nulo hacer
+                actual ← actual.siguiente
+            fin mientras
+            actual.siguiente ← nuevoNodo
+        fin si
+        
+        tamaño ← tamaño + 1
+    fin función
+    
+    // Eliminar elemento
+    función eliminar(valor : TipoDato) -> Booleano
+        si cabeza = nulo entonces
+            retornar falso
+        fin si
+        
+        si cabeza.dato = valor entonces
+            cabeza ← cabeza.siguiente
+            tamaño ← tamaño - 1
+            retornar verdadero
+        fin si
+        
+        actual : Nodo ← cabeza
+        mientras actual.siguiente ≠ nulo hacer
+            si actual.siguiente.dato = valor entonces
+                actual.siguiente ← actual.siguiente.siguiente
+                tamaño ← tamaño - 1
+                retornar verdadero
+            fin si
+            actual ← actual.siguiente
+        fin mientras
+        
+        retornar falso
+    fin función
+    
+    // Mostrar todos los elementos
+    función mostrarLista()
+        actual : Nodo ← cabeza
+        mientras actual ≠ nulo hacer
+            mostrar(actual.dato, " -> ")
+            actual ← actual.siguiente
+        fin mientras
+        mostrar("nulo")
+    fin función
+fin clase
 ```
 
-También se puede declarar utilizando `var`:
+## Ejemplo de uso
 
-```csharp
-var listaEnlazada = new LinkedList<string>();
+```/dev/null/pseudocode.txt#L1-13
+lista : ListaEnlazada ← nueva ListaEnlazada()
+
+lista.agregarAlInicio(3)  // [3] -> nulo
+lista.agregarAlInicio(2)  // [2] -> [3] -> nulo
+lista.agregarAlInicio(1)  // [1] -> [2] -> [3] -> nulo
+lista.agregarAlFinal(4)   // [1] -> [2] -> [3] -> [4] -> nulo
+
+lista.mostrarLista()  // 1 -> 2 -> 3 -> 4 -> nulo
+
+lista.eliminar(2)     // [1] -> [3] -> [4] -> nulo
+
+lista.mostrarLista()  // 1 -> 3 -> 4 -> nulo
 ```
 
-## Agregar datos
+## Ventajas y desventajas
 
-Podemos agregar un nuevo elemento al final de la lista enlazada con el siguiente código:
+**Ventajas:**
+- Tamaño dinámico
+- Inserción/eliminación eficiente al inicio: O(1)
+- No requiere memoria contigua
 
-```csharp
-listaEnlazada.AddLast("Elemento");
-```
+**Desventajas:**
+- Acceso secuencial: O(n) para acceder a un elemento
+- Memoria extra para almacenar referencias
+- No permite acceso directo por índice
 
-También se puede agregar un elemento al inicio de la lista enlazada con el siguiente código:
+## Notas importantes
 
-```csharp
-listaEnlazada.AddFirst("Elemento");
-```
-
-## Acceder a los datos
-
-Podemos acceder al primer elemento de la lista enlazada con el siguiente código:
-
-```csharp
-var primerElemento = listaEnlazada.First.Value;
-```
-
-Podemos acceder al último elemento de la lista enlazada con el siguiente código:
-
-```csharp
-var ultimoElemento = listaEnlazada.Last.Value;
-```
-
-## Eliminar datos
-
-Podemos eliminar un elemento de la lista enlazada con el siguiente código:
-
-```csharp
-listaEnlazada.Remove("Elemento");
-```
-
-## Revisar existencia de un elemento
-
-Podemos verificar si un elemento existe en la lista enlazada con el siguiente código:
-
-```csharp
-var elementoExiste = listaEnlazada.Contains("Elemento");
-```
-
-## Eliminar todos los elementos
-
-Podemos eliminar todos los elementos de la lista enlazada con el siguiente código:
-
-```csharp
-listaEnlazada.Clear();
-```
+- Ideal cuando se requieren muchas inserciones/eliminaciones
+- No eficiente para acceso aleatorio frecuente
+- Siempre validar que los punteros no sean nulos
+- El primer nodo se llama "cabeza" de la lista

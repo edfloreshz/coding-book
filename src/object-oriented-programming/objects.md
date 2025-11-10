@@ -1,49 +1,101 @@
 # Objetos
 
-Los objetos son una de las características más importantes de la programación orientada a objetos (OOP, por sus siglas en inglés). Un objeto es una entidad que combina datos y comportamientos, y se puede considerar como una representación realista de algún elemento en el mundo real.
+Los objetos son una de las características más importantes de la programación orientada a objetos (POO). Un objeto es una entidad que combina datos (atributos) y comportamientos (métodos), y se puede considerar como una representación de algún elemento del mundo real.
 
-Por ejemplo, podemos tener un objeto `Auto` que represente un automóvil real, con atributos como la marca, el modelo, el color y la velocidad, así como también con métodos como acelerar, frenar y apagar el motor.
+## Concepto
 
-Para crear un objeto, primero debemos definir una clase que represente a ese objeto. La clase define las propiedades y los métodos que tendrá el objeto, y cada vez que creamos una nueva instancia de la clase, estamos creando un nuevo objeto.
+Un objeto es una instancia de una clase que encapsula datos y funcionalidad. Cada objeto tiene:
+- **Estado**: Representado por sus atributos o propiedades
+- **Comportamiento**: Definido por sus métodos o funciones
+- **Identidad**: Cada objeto es único, incluso si tiene los mismos valores
 
-Por ejemplo, podemos tener la siguiente clase Auto en C#:
+## Clases y objetos
 
-```csharp
-public class Auto
-{
-    public string Marca { get; set; }
-    public string Modelo { get; set; }
-    public string Color { get; set; }
-    public int Velocidad { get; set; }
+Una **clase** es como un molde o plantilla que define la estructura y el comportamiento de los objetos. Un **objeto** es una instancia específica de esa clase.
 
-    public void Acelerar(int kmh)
-    {
-        Velocidad += kmh;
-    }
+```/dev/null/pseudocode.txt#L1-22
+clase Persona
+    // Atributos (estado)
+    nombre : Cadena
+    edad : Entero
 
-    public void Frenar(int kmh)
-    {
-        Velocidad -= kmh;
-    }
+    // Constructor
+    función constructor(nombre : Cadena, edad : Entero)
+        este.nombre ← nombre
+        este.edad ← edad
+    fin función
 
-    public void ApagarMotor()
-    {
-        Velocidad = 0;
-    }
-}
+    // Métodos (comportamiento)
+    función presentarse()
+        mostrar("Hola, mi nombre es ", nombre, " y tengo ", edad, " años")
+    fin función
+
+    función cumplirAños()
+        edad ← edad + 1
+        mostrar("¡Feliz cumpleaños! Ahora tengo ", edad, " años")
+    fin función
+fin clase
 ```
 
-Luego, podemos crear una nueva instancia de la clase Auto y acceder a sus propiedades y métodos de la siguiente manera:
+## Crear objetos
 
-```csharp
-Auto miAuto = new Auto();
-miAuto.Marca = "Toyota";
-miAuto.Modelo = "Corolla";
-miAuto.Color = "Rojo";
+Para usar una clase, primero debemos crear un objeto (instanciar la clase):
 
-miAuto.Acelerar(20);
+```/dev/null/pseudocode.txt#L1-10
+// Crear objetos de la clase Persona
+persona1 : Persona ← nueva Persona("Juan", 30)
+persona2 : Persona ← nueva Persona("María", 25)
 
-Console.WriteLine("Mi auto es un " + miAuto.Marca + " " + miAuto.Modelo + " de color " + miAuto.Color + " y va a una velocidad de " + miAuto.Velocidad + " km/h.");
+// Usar los objetos
+persona1.presentarse()  // "Hola, mi nombre es Juan y tengo 30 años"
+persona2.presentarse()  // "Hola, mi nombre es María y tengo 25 años"
+
+persona1.cumplirAños()  // "¡Feliz cumpleaños! Ahora tengo 31 años"
 ```
 
-En este ejemplo, creamos una nueva instancia de la clase `Auto` llamada `miAuto`, asignamos valores a sus propiedades y llamamos al método `Acelerar`. Finalmente, imprimimos en la consola los valores de las propiedades del objeto `miAuto`.
+## Ejemplo
+
+```/dev/null/pseudocode.txt#L1-32
+clase CuentaBancaria
+    privado saldo : Decimal
+    titular : Cadena
+
+    función constructor(titular : Cadena)
+        este.titular ← titular
+        este.saldo ← 0.0
+    fin función
+
+    función depositar(monto : Decimal)
+        si monto > 0 entonces
+            saldo ← saldo + monto
+            mostrar("Depósito exitoso. Saldo: $", saldo)
+        fin si
+    fin función
+
+    función retirar(monto : Decimal)
+        si monto > saldo entonces
+            mostrar("Error: Saldo insuficiente")
+        sino
+            saldo ← saldo - monto
+            mostrar("Retiro exitoso. Saldo: $", saldo)
+        fin si
+    fin función
+
+    función obtenerSaldo() -> Decimal
+        retornar saldo
+    fin función
+fin clase
+
+cuenta : CuentaBancaria ← nueva CuentaBancaria("Pedro García")
+cuenta.depositar(1000.0)
+cuenta.retirar(300.0)
+mostrar("Saldo actual: $", cuenta.obtenerSaldo())
+```
+
+## Notas importantes
+
+- Un objeto es una instancia específica de una clase
+- Cada objeto tiene su propio estado (valores de atributos)
+- Los métodos definen el comportamiento de los objetos
+- Los constructores inicializan los objetos cuando se crean
+- La palabra clave `este` se refiere al objeto actual dentro de los métodos

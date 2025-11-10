@@ -1,48 +1,67 @@
 # Herencia
 
-Permite la creación de una nueva clase basada en una clase existente, lo que facilita la reutilización de código y la creación de jerarquías de clases.
+La herencia es un principio fundamental de la programación orientada a objetos que permite crear una nueva clase basada en una clase existente, reutilizando su código y extendiendo su funcionalidad.
 
-## Clase base y clase derivada
+## Concepto
 
-En el contexto de la herencia, la clase existente se conoce como clase base o clase padre, y la nueva clase se conoce como clase derivada o clase hija. La clase derivada hereda las propiedades y métodos de la clase base, lo que significa que puede acceder a ellos y utilizarlos como si fueran propios.
+La herencia permite que una clase (clase derivada o hija) adquiera las propiedades y métodos de otra clase (clase base o padre). Esto crea una relación "es un" entre las clases.
 
-Por ejemplo, considera las clases `Animal` y `Dog`:
+## Ejemplo
 
-```csharp
-class Animal
-{
-    public void Eat()
-    {
-        Console.WriteLine("The animal is eating");
-    }
-}
+```/dev/null/pseudocode.txt#L1-35
+clase Animal
+    nombre : Cadena
+    edad : Entero
+    
+    función constructor(nombre : Cadena, edad : Entero)
+        este.nombre ← nombre
+        este.edad ← edad
+    fin función
+    
+    función hacerSonido()
+        mostrar("El animal hace un sonido")
+    fin función
+    
+    función dormir()
+        mostrar(nombre, " está durmiendo")
+    fin función
+fin clase
 
-class Dog : Animal
-{
-    public void Bark()
-    {
-        Console.WriteLine("The dog is barking");
-    }
-}
+clase Perro hereda de Animal
+    raza : Cadena
+    
+    función constructor(nombre : Cadena, edad : Entero, raza : Cadena)
+        super(nombre, edad)
+        este.raza ← raza
+    fin función
+    
+    función hacerSonido()
+        mostrar(nombre, " dice: ¡Guau! ¡Guau!")
+    fin función
+    
+    función perseguirPelota()
+        mostrar(nombre, " está persiguiendo la pelota")
+    fin función
+fin clase
+
+// Uso
+perro : Perro ← nuevo Perro("Max", 3, "Labrador")
+perro.hacerSonido()      // "Max dice: ¡Guau! ¡Guau!" (sobreescrito)
+perro.dormir()           // "Max está durmiendo" (heredado)
+perro.perseguirPelota()  // "Max está persiguiendo la pelota" (propio)
 ```
-
-En este ejemplo, la clase `Dog` hereda de la clase `Animal`, lo que significa que la clase `Dog` tiene acceso al método `Eat` definido en la clase `Animal`. Además, la clase `Dog` define un nuevo método `Bark` que no está presente en la clase `Animal`.
 
 ## Ventajas de la herencia
 
-La herencia ofrece varias ventajas en el desarrollo de software:
+1. **Reutilización de código**: Evita duplicar código al compartir funcionalidad común
+2. **Jerarquías de clases**: Organiza conceptos en relaciones lógicas
+3. **Extensibilidad**: Fácil añadir nuevas clases derivadas
+4. **Polimorfismo**: Permite tratamiento uniforme de objetos relacionados
 
-- **Reutilización de código**: Permite reutilizar el código existente en una nueva clase, lo que ahorra tiempo y esfuerzo en el desarrollo de software.
-- **Jerarquías de clases**: Permite organizar las clases en jerarquías, lo que facilita la comprensión y mantenimiento del código.
-- **Polimorfismo**: Permite que los objetos de una clase derivada se comporten como objetos de la clase base, lo que facilita la creación de código genérico y flexible.
+## Notas importantes
 
-## Consideraciones
-
-Aunque la herencia es una herramienta poderosa en la programación orientada a objetos, también tiene algunas limitaciones y consideraciones importantes:
-
-- **Acoplamiento**: La herencia puede aumentar el acoplamiento entre las clases, lo que puede dificultar la modificación y extensión del código.
-- **Jerarquías profundas**: Las jerarquías de clases muy profundas pueden ser difíciles de mantener y entender, lo que puede llevar a problemas de diseño.
-- **Sobreescritura de métodos**: La sobreescritura de métodos en las clases derivadas puede llevar a una complejidad innecesaria y a un código difícil de mantener.
-- **Diseño cuidadoso**: Es importante diseñar cuidadosamente las jerarquías de clases y evitar la herencia excesiva para garantizar un código limpio y mantenible.
-
-En resumen, la herencia es una herramienta poderosa en la programación orientada a objetos que permite la reutilización de código y la creación de jerarquías de clases. Sin embargo, es importante utilizarla con cuidado y considerar las implicaciones de diseño para garantizar un código limpio y mantenible.
+- La clase derivada hereda atributos y métodos de la clase base
+- Usar `super()` para llamar al constructor de la clase padre
+- Los métodos pueden ser sobreescritos para proporcionar comportamiento específico
+- La herencia crea una dependencia fuerte entre clases
+- Usar herencia solo cuando hay una clara relación "es un"

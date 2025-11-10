@@ -1,35 +1,101 @@
 # Try-Catch
 
-El manejo de errores es una parte fundamental de la programación. En JavaScript, puedes manejar errores utilizando bloques `try-catch`. Un bloque `try` contiene el código que puede lanzar una excepción, y un bloque `catch` contiene el código que maneja la excepción.
+El manejo de errores con `try-catch` (intentar-capturar) permite ejecutar código que puede fallar y manejar los errores de manera controlada.
 
-```csharp
-try
-{
-    // Código que puede lanzar una excepción
-}
-catch (Exception ex)
-{
-    // Código que maneja la excepción
-}
+## ¿Qué es try-catch?
+
+Try-catch es una estructura que permite:
+- **Intentar** ejecutar código que puede generar errores
+- **Capturar** el error cuando ocurre
+- **Manejar** el error sin que el programa se detenga
+
+## Estructura básica
+
+```pseudocode
+intentar
+    // Código que puede fallar
+capturar (error)
+    // Qué hacer si falla
+fin intentar
 ```
-
-En este ejemplo, el bloque `try` contiene el código que puede lanzar una excepción. Si se produce una excepción, el control se transfiere al bloque `catch`, que maneja la excepción. El parámetro `ex` contiene información sobre la excepción que se ha producido, como su tipo y mensaje.
 
 ## Ejemplo
 
-En el siguiente ejemplo, se intenta dividir dos números y se maneja la excepción si el divisor es cero:
+```pseudocode
+// Pedir un número al usuario y dividir
+intentar
+    variable numero : entero
+    mostrar("Ingresa un número:")
+    leer(numero)
+    
+    variable resultado : entero ← 100 / numero
+    mostrar("100 dividido entre " + convertirATexto(numero) + " = " + convertirATexto(resultado))
+    
+capturar (error)
+    mostrar("Error: No se pudo realizar la operación")
+    mostrar("Verifica que ingresaste un número válido y diferente de cero")
+fin intentar
 
-```csharp
-try
-{
-    int result = 10 / 0;
-    Console.WriteLine($"El resultado de la división es: {result}");
-}
-catch (DivideByZeroException ex)
-{
-    Console.WriteLine("Error: No se puede dividir por cero");
-}
+mostrar("El programa continúa funcionando")
 ```
 
-En este ejemplo, se intenta dividir `dividendo` por `divisor`. Si `divisor` es cero, se lanza una excepción `DivideByZeroException`, que se maneja en el bloque `catch`. En este caso, se imprime un mensaje de error en la consola.
+## ¿Qué pasa sin try-catch?
 
+**Sin try-catch:**
+- Si el usuario ingresa 0, el programa se detiene con error
+- El programa termina abruptamente
+
+**Con try-catch:**
+- Si el usuario ingresa 0, se captura el error
+- Se muestra un mensaje amigable
+- El programa continúa ejecutándose
+
+## Bloque finally
+
+Opcionalmente, puedes usar `finalmente` para código que siempre se ejecuta:
+
+```pseudocode
+intentar
+    variable archivo : Archivo ← abrirArchivo("datos.txt")
+    variable contenido : texto ← archivo.leer()
+    mostrar(contenido)
+    
+capturar (error)
+    mostrar("No se pudo leer el archivo")
+    
+finalmente
+    // Esto SIEMPRE se ejecuta, haya error o no
+    cerrarArchivo(archivo)
+fin intentar
+```
+
+## Usos comunes
+
+Try-catch se usa para:
+- **Leer archivos** - El archivo puede no existir
+- **Convertir texto a números** - El texto puede no ser válido
+- **Conectar a internet** - La conexión puede fallar
+- **Acceder a bases de datos** - Puede haber problemas de conexión
+- **Dividir números** - El divisor puede ser cero
+
+## Buenas prácticas
+
+1. **Usa try-catch solo cuando sea necesario** - No envuelvas todo el código
+2. **Muestra mensajes claros** - Explica qué salió mal y qué hacer
+3. **No captures errores y los ignores** - Siempre haz algo con el error
+4. **Usa finally para limpieza** - Cierra archivos, conexiones, etc.
+
+## Cuándo usar try-catch
+
+**Usa try-catch cuando:**
+- El código puede fallar por razones fuera de tu control
+- Trabajas con archivos, red, o entrada de usuario
+- Quieres que el programa continúe aunque algo falle
+- Necesitas mostrar mensajes amigables al usuario
+
+**No uses try-catch cuando:**
+- Puedes validar los datos antes de usarlos
+- El error se puede prevenir con una simple verificación
+- Estás aprendiendo y quieres ver dónde están los errores
+
+Try-catch es una herramienta importante para hacer programas robustos que no se detengan ante errores inesperados.

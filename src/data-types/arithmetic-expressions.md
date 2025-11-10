@@ -1,166 +1,80 @@
-# Expresiones aritmeticas
+# Expresiones aritméticas
 
 Una expresión aritmética es una combinación de valores, variables y operadores que se evalúa para producir un resultado numérico. Los operadores aritméticos se utilizan para realizar operaciones matemáticas básicas, como suma, resta, multiplicación y división.
 
-### Operador de incremento `++`
+## Operadores básicos
 
-El operador de incremento unario `++` incrementa su operando en 1.
+```/dev/null/pseudocode.txt#L1-8
+a : Entero ← 10
+b : Entero ← 3
 
-El operador de incremento se admite en dos formas: el operador de incremento posfijo (`x++`) y el operador de incremento prefijo (`++x`).
-
-### Operador de incremento de postfijo
-
-El resultado de `x++` es el valor de `x` *antes* de la operación, tal y como se muestra en el ejemplo siguiente:
-
-```csharp
-int i = 3;
-Console.WriteLine(i);   // output: 3
-Console.WriteLine(i++); // output: 3
-Console.WriteLine(i);   // output: 4
+suma : Entero ← a + b         // 13
+resta : Entero ← a - b        // 7
+multiplicación : Entero ← a * b  // 30
+división : Entero ← a / b     // 3
+resto : Entero ← a % b        // 1
 ```
 
-### Operador de incremento prefijo
+## Operadores de incremento y decremento
 
-El resultado de `++x` es el valor de `x` *después* de la operación, tal y como se muestra en el ejemplo siguiente:
+El operador de incremento (`++`) aumenta el valor en 1, y el operador de decremento (`--`) lo disminuye en 1.
 
-```csharp
-double a = 1.5;
-Console.WriteLine(a);   // output: 1.5
-Console.WriteLine(++a); // output: 2.5
-Console.WriteLine(a);   // output: 2.5
+### Incremento/Decremento posfijo
+
+El valor se usa primero, luego se incrementa o decrementa:
+
+```/dev/null/pseudocode.txt#L1-6
+i : Entero ← 3
+mostrar(i++)    // muestra 3, luego i se convierte en 4
+mostrar(i)      // muestra 4
+
+j : Entero ← 5
+mostrar(j--)    // muestra 5, luego j se convierte en 4
 ```
 
-# Operador de decremento `--`
+### Incremento/Decremento prefijo
 
-El operador de decremento unario `--` disminuye su operando en 1. El operando debe ser una variable, un acceso de [propiedad](https://learn.microsoft.com/es-es/dotnet/csharp/programming-guide/classes-and-structs/properties) o un acceso de [indexador](https://learn.microsoft.com/es-es/dotnet/csharp/programming-guide/indexers/).
+El valor se incrementa o decrementa primero, luego se usa:
 
-El operador de decremento se admite en dos formas: el operador de decremento posfijo (`x--`) y el operador de decremento prefijo (`--x`).
+```/dev/null/pseudocode.txt#L1-6
+i : Entero ← 3
+mostrar(++i)    // i se convierte en 4, luego muestra 4
+mostrar(i)      // muestra 4
 
-### Operador de decremento de postfijo
-
-El resultado de `x--` es el valor de `x` *antes* de la operación, como se muestra en el ejemplo siguiente:
-
-```csharp
-int i = 3;
-Console.WriteLine(i);   // output: 3
-Console.WriteLine(i--); // output: 3
-Console.WriteLine(i);   // output: 2
+j : Entero ← 5
+mostrar(--j)    // j se convierte en 4, luego muestra 4
 ```
 
-### Operador de decremento de prefijo
+## Precedencia de operadores
 
-El resultado de `--x` es el valor de `x` *después* de la operación, tal y como se muestra en el ejemplo siguiente:
+Los operadores siguen un orden de evaluación:
 
-```csharp
-double a = 1.5;
-Console.WriteLine(a);   // output: 1.5
-Console.WriteLine(--a); // output: 0.5
-Console.WriteLine(a);   // output: 0.5
+1. Paréntesis `()`
+2. Incremento/Decremento `++`, `--`
+3. Multiplicación, División, Módulo `*`, `/`, `%`
+4. Suma, Resta `+`, `-`
+
+```/dev/null/pseudocode.txt#L1-4
+resultado : Entero ← 2 + 3 * 4      // 14 (multiplicación primero)
+resultado : Entero ← (2 + 3) * 4    // 20 (paréntesis primero)
+resultado : Entero ← 10 / 2 * 3     // 15 (izquierda a derecha)
 ```
 
-## Operadores unarios más y menos
+## Ejemplo práctico
 
-El operador `+` unario devuelve el valor de su operando. El operador unario `-` calcula la negación numérica del operando.
+```/dev/null/pseudocode.txt#L1-7
+// Calcular el área de un rectángulo
+base : Decimal ← 5.0
+altura : Decimal ← 3.0
+área : Decimal ← base * altura
+perímetro : Decimal ← 2 * (base + altura)
 
-```csharp
-Console.WriteLine(+4);     // output: 4
-
-Console.WriteLine(-4);     // output: -4
-Console.WriteLine(-(-4));  // output: 4
-
-int a = 5;
-var b = -a;
-Console.WriteLine(b);            // output: -5
-Console.WriteLine(b.GetType());  // output: System.Int64
-
-Console.WriteLine(-double.NaN);  // output: NaN
+mostrar("Área: ", área, ", Perímetro: ", perímetro)
 ```
 
-# Operador de suma `+`
+## Notas importantes
 
-El operador de suma `+` calcula la suma de sus operandos:
-
-```csharp
-Console.WriteLine(5 + 4);       // output: 9
-Console.WriteLine(5 + 4.3);     // output: 9.3
-Console.WriteLine(5.1m + 4.2m); // output: 9.3
-```
-
-También puede usar el operador `+` para la concatenación de cadenas.
-
-# Operador de resta `-`
-
-El operador de resta `-` resta el operando derecho del izquierdo:
-
-```csharp
-Console.WriteLine(47 - 3);      // output: 44
-Console.WriteLine(5 - 4.3);     // output: 0.7
-Console.WriteLine(7.5m - 2.3m); // output: 5.2
-```
-
-# Operador de multiplicación `*`
-
-El operador de multiplicación `*` calcula el producto de sus operandos:
-
-```csharp
-Console.WriteLine(5 * 2);         // output: 10
-Console.WriteLine(0.5 * 2.5);     // output: 1.25
-Console.WriteLine(0.1m * 23.4m);  // output: 2.34
-```
-
-# Operador de división `/`
-
-El operador de división `/` divide el operando izquierdo entre el derecho.
-
-## División de enteros
-
-Para los operandos de tipos enteros, el resultado del operador `/` es de un tipo entero y equivale al cociente de los dos operandos redondeados hacia cero:
-
-```csharp
-Console.WriteLine(13 / 5);    // output: 2
-Console.WriteLine(-13 / 5);   // output: -2
-Console.WriteLine(13 / -5);   // output: -2
-Console.WriteLine(-13 / -5);  // output: 2
-```
-
-## División de punto flotante
-
-Para los tipos `float`, `double` y `decimal`, el resultado del operador `/` es el cociente de los dos operandos:
-
-```csharp
-Console.WriteLine(16.8f / 4.1f);   // output: 4.097561
-Console.WriteLine(16.8d / 4.1d);   // output: 4.09756097560976
-Console.WriteLine(16.8m / 4.1m);   // output: 4.0975609756097560975609756098
-```
-
-Si uno de los operandos es `decimal`, otro operando no puede ser `float` ni `double`, ya que ni `float` ni `double` se convierte de forma implícita a `decimal`. Debe convertir explícitamente el operando `float` o `double` al tipo `decimal`.
-
-# Operador de resto `%`
-
-El operador de resto `%` calcula el resto después de dividir el operando izquierdo entre el derecho.
-
-## Resto entero
-
-En el caso de los operandos de tipos enteros, el resultado de `a % b` es el valor producido por `a - (a / b) * b`. El signo de resto distinto de cero es el mismo que el del operando izquierdo, como se muestra en el ejemplo siguiente:
-
-```csharp
-Console.WriteLine(5 % 4);   // output: 1
-Console.WriteLine(5 % -4);  // output: 1
-Console.WriteLine(-5 % 4);  // output: -1
-Console.WriteLine(-5 % -4); // output: -1
-```
-
-## Resto de punto flotante
-
-En el caso de los operandos `float` y `double`, el resultado de `x % y` para `x` e `y` finitos es el valor `z`, de modo que
-
-- el signo de `z`, si no es cero, es el mismo que el signo de `x`;
-- el valor absoluto de `z` es el valor producido por `|x| - n * |y|`, donde `n` es el entero más grande posible que sea menor o igual que `|x| / |y|`, y `|x|` e `|y|` son los valores absolutos de `x` e `y`, respectivamente.
-
-En el ejemplo siguiente se muestra el comportamiento del operador de resto con operandos de punto flotante:
-
-```csharp
-Console.WriteLine(-5.2f % 2.0f); // output: -1.2
-Console.WriteLine(5.9 % 3.1);    // output: 2.8
-Console.WriteLine(5.9m % 3.1m);  // output: 2.8
-```
+- La división de enteros descarta la parte decimal
+- El operador módulo (`%`) devuelve el resto de la división
+- Usar paréntesis para clarificar el orden de las operaciones
+- Los operadores de incremento/decremento modifican la variable directamente

@@ -1,56 +1,116 @@
 # For
 
-La estructura de control de ciclo `for` es una de las estructuras de control más comunes en la programación y se utiliza para repetir un bloque de código un número determinado de veces.
+El ciclo `for` (o `para`) se usa para repetir código un número específico de veces.
 
-Aquí hay un ejemplo en C#:
+## Estructura básica
 
-```csharp
-Console.WriteLine("Impresión de números del 1 al 10:");
-for (int i = 1; i <= 10; i++)
-{
-    Console.WriteLine(i);
-}
+```pseudocode
+para variable desde inicio hasta fin hacer
+    // Código que se repite
+fin para
 ```
 
-El ciclo `for` en C# tiene tres componentes principales:
+## Ejemplo
 
-1. Inicialización: Es el bloque de código que se ejecuta antes de que el ciclo comience por primera vez. Aquí es donde se inicializan las variables necesarias para el ciclo.
-2. Condición: Es la expresión booleana que se evalúa antes de cada iteración del ciclo. Si la condición es verdadera, el ciclo continúa ejecutándose; de lo contrario, el ciclo se detiene.
-3. Actualización: Es el bloque de código que se ejecuta después de cada iteración del ciclo. Aquí es donde se actualizan las variables que se usaron en la inicialización o en el cuerpo del ciclo.
+```pseudocode
+// Contar del 1 al 5
+para i desde 1 hasta 5 hacer
+    mostrar(i)
+fin para
 
-Además de la estructura de ciclo `for` tradicional que acabamos de ver, existen algunas variantes de ciclo `for` en C# que pueden ser útiles en diferentes situaciones. Aquí hay dos ejemplos:
+// Esto muestra:
+// 1
+// 2
+// 3
+// 4
+// 5
 
-## `foreach`
+// Contar del 1 al 10
+para numero desde 1 hasta 10 hacer
+    mostrar("Número: " + convertirATexto(numero))
+fin para
 
-La estructura de ciclo `foreach` se utiliza para iterar sobre una colección, como una lista o un diccionario. Por ejemplo:
+// Sumar números del 1 al 100
+variable suma : entero ← 0
+para i desde 1 hasta 100 hacer
+    suma ← suma + i
+fin para
+mostrar("La suma es: " + convertirATexto(suma))  // 5050
 
-```csharp
-List<string> colors = new List<string>()
-{
-    "red", "green", "blue"
-};
+// Recorrer una lista
+lista frutas : texto ← ["manzana", "naranja", "plátano"]
+para i desde 0 hasta frutas.tamaño() - 1 hacer
+    mostrar(frutas[i])
+fin para
 
-Console.WriteLine("Impresión de colores:");
-foreach (string color in colors)
-{
-    Console.WriteLine(color);
-}
+// Tabla de multiplicar del 5
+para i desde 1 hasta 10 hacer
+    variable resultado : entero ← 5 * i
+    mostrar("5 x " + convertirATexto(i) + " = " + convertirATexto(resultado))
+fin para
 ```
 
-> En este ejemplo, se crea una lista de colores y se utiliza un ciclo `foreach` para imprimirlos en la consola. La sintaxis del ciclo `foreach` es `foreach (tipo nombre_variable in colección)`, donde `tipo` es el tipo de los elementos en la colección y `nombre_variable` es una variable que se usa para referirse a cada elemento en la colección en cada iteración.
-> 
+## For-each (para cada)
 
-## `for infinito`
+Forma más simple para recorrer listas:
 
-El ciclo `for(;;)` es un ciclo infinito en C#, lo que significa que continuará ejecutándose indefinidamente hasta que se alcance un `break` o una excepción sea lanzada dentro del cuerpo del ciclo. Por lo tanto, es importante tener cuidado al usar este tipo de ciclos, ya que pueden causar problemas en el programa si no se controlan adecuadamente. Aquí hay un ejemplo de código:
+```pseudocode
+lista colores : texto ← ["rojo", "verde", "azul"]
 
-```csharp
-for (;;)
-{
-    Console.WriteLine("Este es un ciclo infinito");
-    if (true)
-    {
-        break;
-    }
-}
+para cada color en colores hacer
+    mostrar(color)
+fin para
 ```
+
+## Paso personalizado
+
+```pseudocode
+// Contar de 2 en 2
+para i desde 0 hasta 10 paso 2 hacer
+    mostrar(i)  // 0, 2, 4, 6, 8, 10
+fin para
+
+// Contar hacia atrás
+para i desde 10 hasta 1 paso -1 hacer
+    mostrar(i)  // 10, 9, 8, 7, 6, 5, 4, 3, 2, 1
+fin para
+```
+
+## Usos comunes
+
+El ciclo `for` se usa para:
+- **Contar** - Del 1 al 10, del 0 al 100, etc.
+- **Recorrer listas** - Procesar cada elemento
+- **Repetir acciones** - Hacer algo N veces
+- **Generar secuencias** - Tablas de multiplicar, patrones
+
+## Diferencia con while
+
+| For | While |
+|-----|-------|
+| Sabes cuántas veces se repetirá | No sabes cuántas veces se repetirá |
+| Más corto y claro | Más flexible |
+| Usa contador | Usa condición |
+
+## Buenas prácticas
+
+1. **Usa nombres claros** - `i` está bien para contadores simples, pero usa nombres descriptivos cuando sea necesario
+2. **No modifiques el contador dentro del ciclo** - Puede causar confusión
+3. **Usa for-each cuando sea posible** - Es más simple y claro
+4. **Verifica los límites** - Asegúrate de no salir del rango de la lista
+
+## Cuándo usar for
+
+**Usa for cuando:**
+- Sabes exactamente cuántas veces repetir
+- Necesitas un contador
+- Recorres una lista o arreglo
+- Generas secuencias numéricas
+
+**Usa while cuando:**
+- No sabes cuántas veces repetir
+- Dependes de una condición que puede cambiar
+- Esperas entrada del usuario
+- La repetición es condicional
+
+El ciclo `for` es una de las estructuras más usadas en programación por su simplicidad y claridad.
