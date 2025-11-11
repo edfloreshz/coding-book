@@ -1,10 +1,6 @@
 # Summary
 
 - [Introducción](./introduction.md)
-- [Historia](./history/index.md)
-  - [Hitos importantes](./history/important-milestones.md)
-  - [Primeros algoritmos](./history/first-algorithms.md)
-  - [Cambios en la sociedad](./history/changes-in-society.md)
 - [Conceptos básicos](./basic-concepts/index.md)
     - [Guía de pseudocódigo](./basic-concepts/pseudocode-guide.md)
     - [Lenguajes de programación](./basic-concepts/programming-language.md)
