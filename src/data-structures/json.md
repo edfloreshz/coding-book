@@ -17,7 +17,7 @@ JSON se compone de dos estructuras principales:
 
 ```/dev/null/json.txt#L1-9
 {
-  "cadena": "Hola Mundo",
+  "texto": "Hola Mundo",
   "número": 42,
   "decimal": 3.14,
   "booleano": true,
@@ -31,9 +31,9 @@ JSON se compone de dos estructuras principales:
 
 ```/dev/null/pseudocode.txt#L1-45
 clase Estudiante
-    nombre : Cadena
+    nombre : Texto
     edad : Entero
-    materias : Lista<Cadena>
+    materias : Lista<Texto>
     activo : Booleano
 fin clase
 
@@ -45,7 +45,7 @@ estudiante.activo ← verdadero
 estudiante.materias ← ["Programación", "Bases de Datos", "Algoritmos"]
 
 // Serializar a JSON (convertir objeto a texto)
-json : Cadena ← serializarAJSON(estudiante)
+json : Texto ← serializarAJSON(estudiante)
 mostrar(json)
 
 // El JSON resultante:
@@ -61,7 +61,7 @@ mostrar(json)
 // }
 
 // Deserializar desde JSON (convertir texto a objeto)
-textoJSON : Cadena ← '{
+textoJSON : Texto ← '{
   "nombre": "Juan Pérez",
   "edad": 25,
   "materias": ["Matemáticas", "Física"],
@@ -79,14 +79,14 @@ mostrar(estudianteRecuperado.materias) // ["Matemáticas", "Física"]
 
 ```/dev/null/pseudocode.txt#L1-14
 // Guardar datos en archivo JSON
-función guardarEnJSON(ruta : Cadena, objeto : Objeto)
-    json : Cadena ← serializarAJSON(objeto)
+función guardarEnJSON(ruta : Texto, objeto : Objeto)
+    json : Texto ← serializarAJSON(objeto)
     escribirArchivo(ruta, json)
 fin función
 
 // Leer datos desde archivo JSON
-función leerDesdeJSON<T>(ruta : Cadena) -> T
-    json : Cadena ← leerArchivo(ruta)
+función leerDesdeJSON<T>(ruta : Texto) -> T
+    json : Texto ← leerArchivo(ruta)
     objeto : T ← deserializarJSON<T>(json)
     retornar objeto
 fin función

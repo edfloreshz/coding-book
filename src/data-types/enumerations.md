@@ -174,7 +174,7 @@ enumeración Dirección
     Oeste
 fin enumeración
 
-función mover(direcciónActual : Dirección) -> Cadena
+función mover(direcciónActual : Dirección) -> Texto
     según direcciónActual hacer
         caso Dirección.Norte:
             retornar "Moviendo hacia el Norte"
@@ -190,7 +190,7 @@ función mover(direcciónActual : Dirección) -> Cadena
 fin función
 
 dirección : Dirección ← Dirección.Norte
-mensaje : Cadena ← mover(dirección)
+mensaje : Texto ← mover(dirección)
 mostrar(mensaje)
 ```
 
@@ -208,7 +208,7 @@ función tienePermiso(rolUsuario : Rol, rolRequerido : Rol) -> Booleano
     retornar rolUsuario >= rolRequerido
 fin función
 
-función verificarAcceso(usuario : Rol, acción : Cadena)
+función verificarAcceso(usuario : Rol, acción : Texto)
     si acción = "leer" entonces
         si tienePermiso(usuario, Rol.Invitado) entonces
             mostrar("Acceso concedido para leer")

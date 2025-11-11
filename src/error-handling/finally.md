@@ -25,17 +25,17 @@ archivo : Archivo ← nulo
 
 intentar
     archivo ← abrirArchivo("datos.txt", ModoLectura)
-    contenido : Cadena ← archivo.leerTodo()
+    contenido : Texto ← archivo.leerTodo()
     mostrar("Contenido: ", contenido)
-    
+
     // Procesar el archivo...
-    
+
 capturar ArchivoNoEncontradoError como error
     mostrar("Error: El archivo no existe")
-    
+
 capturar ErrorDeEntradaSalida como error
     mostrar("Error al leer el archivo: ", error.mensaje)
-    
+
 finalmente
     si archivo ≠ nulo entonces
         archivo.cerrar()
@@ -59,10 +59,10 @@ intentar
     mostrar("1. Ejecutando intentar")
     resultado : Entero ← 10 / 2
     mostrar("2. Resultado: ", resultado)
-    
+
 capturar error
     mostrar("Este no se ejecuta (no hay error)")
-    
+
 finalmente
     mostrar("3. Ejecutando finalmente")
 fin intentar

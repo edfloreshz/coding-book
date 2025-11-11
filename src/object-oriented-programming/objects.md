@@ -16,11 +16,11 @@ Una **clase** es como un molde o plantilla que define la estructura y el comport
 ```/dev/null/pseudocode.txt#L1-22
 clase Persona
     // Atributos (estado)
-    nombre : Cadena
+    nombre : Texto
     edad : Entero
 
     // Constructor
-    función constructor(nombre : Cadena, edad : Entero)
+    función constructor(nombre : Texto, edad : Entero)
         este.nombre ← nombre
         este.edad ← edad
     fin función
@@ -58,9 +58,9 @@ persona1.cumplirAños()  // "¡Feliz cumpleaños! Ahora tengo 31 años"
 ```/dev/null/pseudocode.txt#L1-32
 clase CuentaBancaria
     privado saldo : Decimal
-    titular : Cadena
+    titular : Texto
 
-    función constructor(titular : Cadena)
+    función constructor(titular : Texto)
         este.titular ← titular
         este.saldo ← 0.0
     fin función

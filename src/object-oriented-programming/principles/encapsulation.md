@@ -12,13 +12,13 @@ El encapsulamiento agrupa datos (atributos) y métodos en una clase, controlando
 clase CuentaBancaria
     // Atributos privados (ocultos del exterior)
     privado saldo : Decimal
-    privado titular : Cadena
-    
-    función constructor(titular : Cadena)
+    privado titular : Texto
+
+    función constructor(titular : Texto)
         este.titular ← titular
         este.saldo ← 0.0
     fin función
-    
+
     // Métodos públicos (interfaz pública)
     público función depositar(monto : Decimal)
         si monto > 0 entonces
@@ -28,7 +28,7 @@ clase CuentaBancaria
             mostrar("Error: Monto debe ser positivo")
         fin si
     fin función
-    
+
     público función retirar(monto : Decimal) -> Booleano
         si monto > saldo entonces
             mostrar("Error: Saldo insuficiente")
@@ -42,7 +42,7 @@ clase CuentaBancaria
             retornar verdadero
         fin si
     fin función
-    
+
     público función obtenerSaldo() -> Decimal
         retornar saldo
     fin función

@@ -20,10 +20,10 @@ La programación orientada a objetos modela conceptos del mundo real como objeto
 ```/dev/null/pseudocode.txt#L1-65
 // Clase base
 clase Empleado
-    privado nombre : Cadena
+    privado nombre : Texto
     privado salario : Decimal
 
-    función constructor(nombre : Cadena, salario : Decimal)
+    función constructor(nombre : Texto, salario : Decimal)
         este.nombre ← nombre
         este.salario ← salario
     fin función
@@ -36,7 +36,7 @@ clase Empleado
         retornar salario
     fin función
 
-    función obtenerNombre() -> Cadena
+    función obtenerNombre() -> Texto
         retornar nombre
     fin función
 fin clase
@@ -45,7 +45,7 @@ fin clase
 clase Gerente hereda de Empleado
     privado bonificación : Decimal
 
-    función constructor(nombre : Cadena, salario : Decimal, bono : Decimal)
+    función constructor(nombre : Texto, salario : Decimal, bono : Decimal)
         super(nombre, salario)
         este.bonificación ← bono
     fin función

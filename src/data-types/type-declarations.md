@@ -8,9 +8,9 @@ Un alias de tipo es un nombre alternativo para un tipo de dato existente. Esto p
 
 ```/dev/null/pseudocode.txt#L1-15
 // Definir alias para tipos complejos
-tipo ListaDeNombres = Lista<Cadena>
+tipo ListaDeNombres = Lista<Texto>
 tipo Coordenadas = Par<Decimal, Decimal>
-tipo DiccionarioEdades = Mapa<Cadena, Entero>
+tipo DiccionarioEdades = Mapa<Texto, Entero>
 
 // Usar los alias
 nombres : ListaDeNombres ← ["Ana", "Juan", "María"]
@@ -28,6 +28,6 @@ mostrar("Edad de Ana: ", edades["Ana"])
 ## Recomendaciones
 
 - Usar alias para tipos complejos que se repiten frecuentemente
-- Evitar alias para tipos primitivos (Entero, Cadena, Booleano)
+- Evitar alias para tipos primitivos (Entero, Texto, Booleano)
 - Usar nombres descriptivos que indiquen el propósito del tipo
 - Los alias no crean nuevos tipos, solo nombres alternativos

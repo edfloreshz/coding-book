@@ -10,35 +10,35 @@ La herencia permite que una clase (clase derivada o hija) adquiera las propiedad
 
 ```/dev/null/pseudocode.txt#L1-35
 clase Animal
-    nombre : Cadena
+    nombre : Texto
     edad : Entero
-    
-    función constructor(nombre : Cadena, edad : Entero)
+
+    función constructor(nombre : Texto, edad : Entero)
         este.nombre ← nombre
         este.edad ← edad
     fin función
-    
+
     función hacerSonido()
         mostrar("El animal hace un sonido")
     fin función
-    
+
     función dormir()
         mostrar(nombre, " está durmiendo")
     fin función
 fin clase
 
 clase Perro hereda de Animal
-    raza : Cadena
-    
-    función constructor(nombre : Cadena, edad : Entero, raza : Cadena)
+    raza : Texto
+
+    función constructor(nombre : Texto, edad : Entero, raza : Texto)
         super(nombre, edad)
         este.raza ← raza
     fin función
-    
+
     función hacerSonido()
         mostrar(nombre, " dice: ¡Guau! ¡Guau!")
     fin función
-    
+
     función perseguirPelota()
         mostrar(nombre, " está persiguiendo la pelota")
     fin función

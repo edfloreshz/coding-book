@@ -10,16 +10,16 @@ La abstracción permite enfocarse en **qué hace** un objeto en lugar de **cómo
 
 ```/dev/null/pseudocode.txt#L1-45
 clase abstracta Figura
-    color : Cadena
-    
-    función constructor(color : Cadena)
+    color : Texto
+
+    función constructor(color : Texto)
         este.color ← color
     fin función
-    
+
     // Métodos abstractos: deben ser implementados por clases derivadas
     abstracto función calcularÁrea() -> Decimal
     abstracto función calcularPerímetro() -> Decimal
-    
+
     // Método concreto: tiene implementación
     función mostrarInfo()
         mostrar("Figura de color: ", color)
@@ -31,17 +31,17 @@ fin clase
 clase Rectángulo hereda de Figura
     base : Decimal
     altura : Decimal
-    
-    función constructor(color : Cadena, base : Decimal, altura : Decimal)
+
+    función constructor(color : Texto, base : Decimal, altura : Decimal)
         super(color)
         este.base ← base
         este.altura ← altura
     fin función
-    
+
     función calcularÁrea() -> Decimal
         retornar base * altura
     fin función
-    
+
     función calcularPerímetro() -> Decimal
         retornar 2 * (base + altura)
     fin función
@@ -65,16 +65,16 @@ interfaz Volador
 fin interfaz
 
 clase Avión implementa Volador
-    modelo : Cadena
-    
-    función constructor(modelo : Cadena)
+    modelo : Texto
+
+    función constructor(modelo : Texto)
         este.modelo ← modelo
     fin función
-    
+
     función volar()
         mostrar("El avión ", modelo, " está volando")
     fin función
-    
+
     función aterrizar()
         mostrar("El avión ", modelo, " está aterrizando")
     fin función

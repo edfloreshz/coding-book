@@ -10,32 +10,32 @@ El polimorfismo permite que diferentes objetos respondan de manera diferente al 
 
 ```/dev/null/pseudocode.txt#L1-45
 clase Animal
-    nombre : Cadena
-    
-    función constructor(nombre : Cadena)
+    nombre : Texto
+
+    función constructor(nombre : Texto)
         este.nombre ← nombre
     fin función
-    
+
     función hacerSonido()
         mostrar("El animal hace un sonido")
     fin función
 fin clase
 
 clase Perro hereda de Animal
-    función constructor(nombre : Cadena)
+    función constructor(nombre : Texto)
         super(nombre)
     fin función
-    
+
     función hacerSonido()
         mostrar(nombre, " dice: ¡Guau!")
     fin función
 fin clase
 
 clase Gato hereda de Animal
-    función constructor(nombre : Cadena)
+    función constructor(nombre : Texto)
         super(nombre)
     fin función
-    
+
     función hacerSonido()
         mostrar(nombre, " dice: ¡Miau!")
     fin función

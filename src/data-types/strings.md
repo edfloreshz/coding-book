@@ -21,11 +21,11 @@ Las cadenas permiten almacenar y manipular texto.
 
 ```pseudocode
 // Crear una cadena de texto
-variable nombre : texto ← "María"
-variable apellido : texto ← "López"
+variable nombre : Texto ← "María"
+variable apellido : Texto ← "López"
 
 // Unir cadenas (concatenación)
-variable nombreCompleto : texto ← nombre + " " + apellido
+variable nombreCompleto : Texto ← nombre + " " + apellido
 mostrar(nombreCompleto)  // "María López"
 
 // Ver cuántos caracteres tiene

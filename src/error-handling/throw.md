@@ -15,7 +15,7 @@ función dividir(a : Entero, b : Entero) -> Entero
     si b = 0 entonces
         lanzar nuevo Error("No se puede dividir por cero")
     fin si
-    
+
     retornar a / b
 fin función
 
@@ -23,7 +23,7 @@ función validarEdad(edad : Entero)
     si edad < 0 entonces
         lanzar nuevo Error("La edad no puede ser negativa")
     fin si
-    
+
     si edad > 150 entonces
         lanzar nuevo Error("La edad no es válida")
     fin si
@@ -43,7 +43,7 @@ fin intentar
 A veces es necesario capturar una excepción, realizar alguna acción, y luego relanzarla:
 
 ```/dev/null/pseudocode.txt#L1-14
-función procesarArchivo(nombreArchivo : Cadena)
+función procesarArchivo(nombreArchivo : Texto)
     intentar
         archivo : Archivo ← abrirArchivo(nombreArchivo)
         // Procesar archivo...
