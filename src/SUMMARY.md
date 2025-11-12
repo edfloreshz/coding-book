@@ -2,9 +2,9 @@
 
 - [Introducción](./introduction.md)
 - [Conceptos básicos](./basic-concepts/index.md)
+    - [Algoritmos](./basic-concepts/algorithms.md)
     - [Guía de pseudocódigo](./basic-concepts/pseudocode-guide.md)
     - [Lenguajes de programación](./basic-concepts/programming-language.md)
-    - [Algoritmos](./basic-concepts/algorithms.md)
     - [Variables](./basic-concepts/variables/index.md)
       - [Declaración](./basic-concepts/variables/declarations.md)
       - [Identificadores](./basic-concepts/variables/identifiers.md)

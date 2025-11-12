@@ -19,7 +19,7 @@ Un algoritmo es una secuencia finita y ordenada de pasos que resuelve un problem
 
 ```
 entrada: lista de números L no vacía
-maximo ← L[0]
+maximo ← L[0] // [1, 2, 3, 4, 5]
 para i desde 1 hasta longitud(L) - 1 hacer
     si L[i] > maximo entonces
         maximo ← L[i]
